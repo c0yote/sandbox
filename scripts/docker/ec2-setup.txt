@@ -1,0 +1,5 @@
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install python3 python3-pip docker.io git vim
+
+# sudo docker pull debian
+# sudo docker run -i -p 80:8000 -t apache-wsgi python3 /tmp/home/src/manage.py runserver 0.0.0.0:8000
