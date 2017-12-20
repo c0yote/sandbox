@@ -1,0 +1,20 @@
+cmake_minimum_required (VERSION 3.10)
+project (py3cpp)
+
+if (WIN32)
+  if (CMAKE_COMPILER_IS_GNUCXX)
+    message (FATAL_ERROR "Cannot build with mingw-w64. (See https://bugs.python.org/issue11566).")
+    #message (STATUS "Setup GNU compiler build settings.")
+    #set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+  endif()
+endif()
+
+find_package(PythonLibs 3 REQUIRED)
+if (${PYTHONLIBS_FOUND})
+  include_directories(${PYTHON_INCLUDE_DIRS})
+else()
+  message (FATAL_ERROR "Find package couldn't find python3.  Is it installed?")
+endif()
+
+add_executable (py3cpp main.cpp)
+target_link_libraries (py3cpp ${PYTHON_LIBRARIES})
